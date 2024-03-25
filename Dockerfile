@@ -9,11 +9,6 @@ RUN apt-get update -y \
     && apt-get upgrade -y \
     && useradd -m student
 
-# install python and the packages your code depends on along with jq so we can parse JSON
-# add additional packages as necessary
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    postgresql-client
-
 ENV APP_DIR=/opt/otree
 
 # app dirs
