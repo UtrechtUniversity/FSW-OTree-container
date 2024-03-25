@@ -15,8 +15,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     postgresql-client
 
 ENV APP_DIR=/opt/otree
-ENV DJANGO_SETTINGS_MODULE 'settings'
-ARG OTREE_APP_FOLDER=app
 
 # app dirs
 RUN mkdir -p ${APP_DIR} \
