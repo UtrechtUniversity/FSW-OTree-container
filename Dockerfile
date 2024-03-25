@@ -12,7 +12,7 @@ RUN apt-get update -y \
 # install python and the packages your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    postgresql-client
+    postgresql-client \
 
 ENV APP_DIR=/opt/otree
 ENV DJANGO_SETTINGS_MODULE 'settings'
