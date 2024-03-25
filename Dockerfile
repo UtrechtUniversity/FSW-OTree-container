@@ -13,7 +13,7 @@ RUN apt-get update -y \
 # add additional packages as necessary
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     postgresql-client \
-    postgresql-dev \
+    postgresql-dev
 
 ENV APP_DIR=/opt/otree
 ENV DJANGO_SETTINGS_MODULE 'settings'
