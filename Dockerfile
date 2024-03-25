@@ -36,4 +36,4 @@ USER student
 WORKDIR ${APP_DIR}
 VOLUME /opt/init
 ENTRYPOINT ${APP_DIR}/entrypoint.sh
-EXPOSE 8000
+EXPOSE 8080

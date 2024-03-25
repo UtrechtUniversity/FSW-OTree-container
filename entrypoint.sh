@@ -5,4 +5,4 @@ if [ ! -f "/opt/init/.done" ]; then
 fi
 
 # Start oTree server
-cd /opt/otree && otree runprodserver 8000
+cd /opt/otree && otree runprodserver 8080
