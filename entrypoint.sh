@@ -3,6 +3,6 @@
 #    /usr/bin/env python -u /usr/local/bin/otree resetdb --noinput \
 #    && touch /opt/init/.done
 #fi
-
 # Start oTree server
-cd /opt/otree && otree prodserver 8080
+/usr/bin/env
+cd /home/student && otree prodserver 8080

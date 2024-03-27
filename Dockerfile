@@ -7,13 +7,14 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # update the base packages and add a non-sudo user
 RUN apt-get update -y \
     && apt-get upgrade -y \
+    && apt-get install -y postgresql-client \
     && useradd -m student
 
-ENV APP_DIR=/opt/otree
+ENV APP_DIR=/home/student
 
 # app dirs
 RUN mkdir -p ${APP_DIR} \
-    && mkdir -p /opt/init
+    && mkdir -p /home/student/init
 
 ADD . ${APP_DIR}
 RUN pip install --no-cache-dir -r ${APP_DIR}/requirements.txt
@@ -26,6 +27,6 @@ RUN chmod +x ${APP_DIR}/entrypoint.sh
 USER student
 
 WORKDIR ${APP_DIR}
-VOLUME /opt/init
-ENTRYPOINT ["/bin/bash", "/opt/otree/entrypoint.sh"]
+VOLUME /home/student/init
+ENTRYPOINT ["/bin/bash", "/home/student/entrypoint.sh"]
 EXPOSE 8080

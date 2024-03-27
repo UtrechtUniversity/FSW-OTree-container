@@ -1,6 +1,5 @@
 from os import environ
 
-
 SESSION_CONFIGS = [
     dict(
         name='publieke_goederen',
