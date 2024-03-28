@@ -17,6 +17,7 @@ RUN mkdir -p ${APP_DIR} \
     && mkdir -p /home/student/init
 
 ADD . ${APP_DIR}
+RUN chown -R student:student ${APP_DIR}
 RUN pip install --no-cache-dir -r ${APP_DIR}/requirements.txt
 
 ADD entrypoint.sh ${APP_DIR}
@@ -27,6 +28,5 @@ RUN chmod +x ${APP_DIR}/entrypoint.sh
 USER student
 
 WORKDIR ${APP_DIR}
-VOLUME /home/student/init
 ENTRYPOINT ["/bin/bash", "/home/student/entrypoint.sh"]
-EXPOSE 8080
+EXPOSE 8000
