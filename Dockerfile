@@ -16,9 +16,9 @@ ENV APP_DIR=/home/student
 RUN mkdir -p ${APP_DIR} \
     && mkdir -p /home/student/init
 
-ADD . ${APP_DIR}
-RUN chown -R student:student ${APP_DIR}
-RUN pip install --no-cache-dir -r ${APP_DIR}/requirements.txt
+#ADD . ${APP_DIR}
+#RUN chown -R student:student ${APP_DIR}
+#RUN pip install --no-cache-dir -r ${APP_DIR}/requirements.txt
 
 ADD entrypoint.sh ${APP_DIR}
 RUN chmod +x ${APP_DIR}/entrypoint.sh
