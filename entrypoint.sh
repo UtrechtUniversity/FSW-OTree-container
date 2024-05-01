@@ -6,4 +6,5 @@ fi
 # Start oTree server
 cd /home/student/${REPOSITORY} \
   && pip install -f requirements.txt \
+  && export PATH=$PATH:~/.local/bin \
   && otree prodserver
