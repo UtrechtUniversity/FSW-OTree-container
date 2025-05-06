@@ -9,9 +9,9 @@ if [ ! -f "/home/student/init/.done" ]; then
     fi
     cd /home/student/${REPOSITORY} || { echo "Cannot cd into repository"; exit 1; }
     pip install -r requirements.txt
-    returnValue=$?
-    if ! test "returnValue" -eq 0
-    then
+    if [ $? -eq 0 ]; then
+        echo "OK"
+    else
         echo "Could not install requirements"
         exit 1
     fi
