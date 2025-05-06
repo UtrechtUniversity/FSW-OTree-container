@@ -15,7 +15,7 @@ if [ ! -f "/home/student/init/.done" ]; then
         echo "Could not install requirements"
         exit 1
     fi
-    python -u /usr/local/bin/otree resetdb --noinput && touch /home/student/init/.done
+    python -u /home/student/.local/bin/otree resetdb --noinput && touch /home/student/init/.done
 fi
 # Start oTree server
 cd /home/student/${REPOSITORY} \
