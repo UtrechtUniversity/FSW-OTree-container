@@ -1,9 +1,9 @@
 # If run for the first time, set up databases
 if [ ! -f "/home/student/init/.done" ]; then
     git clone https://${GITHUB_USER}:${ACCESS_TOKEN}@github.com/UtrechtUniversity/${REPOSITORY}
-    returnValue=$?
-    if ! test "returnValue" -eq 0
-    then
+    if [ $? -eq 0 ]; then
+        echo "Experiment successfully downloaded from Github"
+    else
         echo "Git clone failed, you may want to check your access token"
         exit 1
     fi
