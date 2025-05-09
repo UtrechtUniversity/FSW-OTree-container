@@ -1,12 +1,23 @@
 # If run for the first time, set up databases
 if [ ! -f "/home/student/init/.done" ]; then
-    git clone https://${GITHUB_USER}:${ACCESS_TOKEN}@github.com/UtrechtUniversity/${REPOSITORY}
-    if [ $? -eq 0 ]; then
-        echo "Experiment successfully downloaded from Github"
+    # Use parameter expansion to split a string '<repository>@<branch>'
+    repo=${REPOSITORY%%@*}
+    branch=${REPOSITORY#*@}
+    # when the '@' character is missing, both regex patterns will match
+    if [ "$branch" == "$repo" ]; then
+      echo "repo without branch"
+      git clone https://${GITHUB_USER}:${ACCESS_TOKEN}@github.com/UtrechtUniversity/${REPOSITORY}
     else
-        echo "Git clone failed, you may want to check your access token"
-        exit 1
+      echo "have a branch '$branch'"
+      git clone -b ${branch} --single-branch https://${GITHUB_USER}:${ACCESS_TOKEN}@github.com/UtrechtUniversity/${repo}
     fi
+    if [ $? -eq 0 ]; then
+      echo "Experiment successfully downloaded from Github"
+    else
+      echo "Git clone failed, you may want to check your access token"
+      exit 1
+    fi
+
     cd /home/student/${REPOSITORY} || { echo "Cannot cd into repository"; exit 1; }
     pip install -r requirements.txt
     if [ $? -eq 0 ]; then
