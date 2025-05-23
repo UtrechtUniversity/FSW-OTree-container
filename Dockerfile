@@ -1,4 +1,4 @@
-FROM python:3.11-bullseye
+FROM python:3.12-bullseye
 
 # set the correct timezone
 ENV TZ=Europe/Amsterdam
