@@ -7,6 +7,7 @@ if [ ! -f "/home/student/init/.done" ]; then
     # when the '@' character is missing, both regex patterns will match
     if [ "$branch" == "$repo" ]; then
       echo "repo without branch"
+      # todo use of this component beyond the UU requires a change right here
       git clone https://${GITHUB_USER}:${ACCESS_TOKEN}@github.com/UtrechtUniversity/${repo}
     else
       echo "have a branch '$branch'"
