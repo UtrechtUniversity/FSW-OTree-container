@@ -45,6 +45,6 @@ if [ ! -f "/home/student/init/.done" ]; then
     python -u /home/student/.local/bin/otree resetdb --noinput && touch /home/student/init/.done
 fi
 # Start oTree server
-cd /home/student/${repo} \
+cd /home/student/${filename} \
   && export PATH=$PATH:~/.local/bin \
   && otree prodserver
