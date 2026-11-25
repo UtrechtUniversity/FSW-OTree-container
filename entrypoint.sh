@@ -2,21 +2,21 @@
 repo=${REPOSITORY%%@*}
 branch=${REPOSITORY#*@}
 
+# See: https://stackoverflow.com/questions/6174220/parse-url-in-shell-script
+# extract the protocol
+proto="$(echo $repo | grep :// | sed -e's,^\(.*://\).*,\1,g')"
+
+# remove the protocol
+url="$(echo ${repo/$proto/})"
+
+# final URL segment, typically <repository>.git
+file="${url##*/}"
+
+# filename without the extension, in this case: repository name
+filename="${file%.*}"
+
 # If run for the first time, set up databases
 if [ ! -f "/home/student/init/.done" ]; then
-
-    # See: https://stackoverflow.com/questions/6174220/parse-url-in-shell-script
-    # extract the protocol
-    proto="$(echo $repo | grep :// | sed -e's,^\(.*://\).*,\1,g')"
-
-    # remove the protocol
-    url="$(echo ${repo/$proto/})"
-
-    # final URL segment, typically <repository>.git
-    file="${url##*/}"
-
-    # filename without the extension, in this case: repository name
-    filename="${file%.*}"
 
     # when the '@' character is missing, both regex patterns will match
     if [ "$branch" == "$repo" ]; then
@@ -44,6 +44,7 @@ if [ ! -f "/home/student/init/.done" ]; then
     fi
     python -u /home/student/.local/bin/otree resetdb --noinput && touch /home/student/init/.done
 fi
+
 # Start oTree server
 cd /home/student/${filename} \
   && export PATH=$PATH:~/.local/bin \
